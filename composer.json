@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel-7-frontend-presets/bulma": "9999999-dev",
         "laravel/framework": "^7.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "rtconner/laravel-tagging": "^4.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
