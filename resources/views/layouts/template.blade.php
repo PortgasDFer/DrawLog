@@ -10,17 +10,27 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <title>DrawLog - Bienvenido</title>
 </head>
 <body>
+
 @if(Auth::user()->hasRole('admin'))
   @include('IntAdmin.navbar')
 @elseif(Auth::user()->hasRole('user'))
   @include('IntUsers.navbar')
 @endif
-@yield('content')
+<section class="section">
+  @yield('content')
+</section>
+
 <!-- Scripts -->
-@include('sweetalert::alert')
+
 <script src="{{ asset('js/app.js') }}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
+@yield('scripts')
+@include('sweetalert::alert')
+
 </body>
 </html>

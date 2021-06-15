@@ -1,0 +1,1 @@
+<span class="tag is-light" style="background-color: {{$color}}; color:white;">{{$color}}</span>

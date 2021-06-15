@@ -1,0 +1,1 @@
+<a href="/categorias-admin/{{$id}}/edit"><button class="button is-primary is-outlined"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>

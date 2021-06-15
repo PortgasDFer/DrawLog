@@ -16,6 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+//Rutas administrador
+//
+//Categorias
+//
+Route::resource('/categorias-admin','CategoriasController');
+Route::get('/obtenerCategorias','CategoriasController@datatable')->name('datatable.categorias');
+//
+//
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
