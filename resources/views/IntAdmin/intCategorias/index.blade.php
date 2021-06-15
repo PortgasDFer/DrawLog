@@ -35,7 +35,7 @@
 	    <div class="box">
 		  <a href="/categorias-admin/create"><button class="button is-link is-rounded is-fullwidth">Registrar nueva categoría</button></a>
 		  <hr>
-		  <a href=""><button class="button is-link is-rounded is-fullwidth">Volver al inicio</button></a>
+		  <a href="/home"><button class="button is-link is-rounded is-fullwidth">Volver al inicio</button></a>
 		</div>
 	  </div>
 	</div>

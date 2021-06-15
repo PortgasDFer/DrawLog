@@ -1,19 +1,14 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="columns is-marginless is-centered">
-    <div class="column is-7">
-        <nav class="card">
-            <header class="card-header">
-                <p class="card-header-title">
-                    Dashboard
-                </p>
-            </header>
-
-            <div class="card-content">
-                You are logged in!
-            </div>
-        </nav>
-    </div>
+<section class="section">
+<div class="columns is-marginless is-centered is-desktop">
+    @foreach($categorias as $c)
+        <div class="column is-2">
+            <button class="button is-rounded" style="background-color:{{$c->color}}; color:white;">{{$c->name}}</button>
+        </div>
+    @endforeach
 </div>
+</section>
+
 @endsection

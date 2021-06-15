@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Categoria;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,8 @@ class HomeController extends Controller
     {
         $request->user()->authorizeRoles(['user', 'admin']);
         if($request->user()->hasRole('user')){
-            return view('welcome');
+            $categorias=Categoria::where('baja','=',0)->inRandomOrder()->limit(6)->get();;
+            return view('welcome',compact('categorias'));
         }elseif($request->user()->hasRole('admin')){
             return view('dashboard');
         }
