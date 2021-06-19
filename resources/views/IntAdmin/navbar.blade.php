@@ -1,4 +1,4 @@
-<nav class="navbar is-primary  is-fixed-top my-3" role="navigation" aria-label="dropdown navigation">
+<nav class="navbar  is-dark  is-fixed-top my-3" role="navigation" aria-label="dropdown navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
       <img src="{{asset('img/drawlog-logo.png')}}" width="112" height="48">
@@ -20,7 +20,7 @@
       <a class="navbar-item">
         <i class="fa fa-money" aria-hidden="true"></i>&nbsp; Ventas
       </a>
-      <a class="navbar-item">
+      <a class="navbar-item" href="/reportes-admin">
          <i class="fa fa-bug" aria-hidden="true"></i>&nbsp; Reportes
       </a>
     </div>

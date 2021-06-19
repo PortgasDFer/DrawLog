@@ -23,7 +23,13 @@
 <section class="section">
   @yield('content')
 </section>
-
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>DrawLog</strong> by <a href="#">Fernando López Servín</a>.
+    </p>
+  </div>
+</footer>
 <!-- Scripts -->
 
 <script src="{{ asset('js/app.js') }}"></script>

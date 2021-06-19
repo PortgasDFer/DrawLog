@@ -1,4 +1,4 @@
-<nav class="navbar is-primary  is-fixed-top" role="navigation" aria-label="dropdown navigation">
+<nav class="navbar is-dark  is-fixed-top" role="navigation" aria-label="dropdown navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
       <img src="{{asset('img/drawlog-logo.png')}}" width="112" height="48">
@@ -32,7 +32,7 @@
     </div>
     <div class="navbar-end">
         <div class="navbar-item"> 
-            <button class="button is-link is-rounded">Sube tus ilustraciones &nbsp;<i class="fa fa-upload" aria-hidden="true"></i></button>
+            <a href="misIlustraciones/create"><button class="button is-link is-rounded">Sube tus ilustraciones &nbsp;<i class="fa fa-upload" aria-hidden="true"></i></button></a> 
         </div>      
         <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="#">{{ Auth::user()->name }}</a>
@@ -42,7 +42,7 @@
                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     Logout
                 </a>
-                <a class="navbar-item">
+                <a class="navbar-item" href="/profiles">
                     Perfil
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
