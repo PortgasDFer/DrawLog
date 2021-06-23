@@ -61,7 +61,7 @@
             <div class="card">
               <div class="card-image">
                 <figure class="image is-4by3">
-                  <img src="img/nami.jpg" alt="Placeholder image">
+                  <img src="https://mocah.org/uploads/posts/1086379-drawing-illustration-anime-Neon-Genesis-Evangelion-Asuka-Langley-Soryu-cartoon-sketch-organ.png" alt="Placeholder image">
                 </figure>
               </div>
             </div>

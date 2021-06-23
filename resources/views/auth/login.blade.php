@@ -25,7 +25,7 @@
 
                         <div class="field is-horizontal">
                             <div class="field-label">
-                                <label class="label">E-Mail Address</label>
+                                <label class="label">E-Mail</label>
                             </div>
 
                             <div class="field-body">
@@ -72,7 +72,7 @@
                                     <p class="control">
                                         <label class="checkbox">
                                             <input type="checkbox"
-                                                   name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                                   name="remember" {{ old('remember') ? 'checked' : '' }}> Recuerdame
                                         </label>
                                     </p>
                                 </div>
@@ -88,11 +88,7 @@
                                         <button type="submit" class="button is-primary">Login</button>
                                     </div>
 
-                                    <div class="control">
-                                        <a href="{{ route('password.request') }}">
-                                            Forgot Your Password?
-                                        </a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

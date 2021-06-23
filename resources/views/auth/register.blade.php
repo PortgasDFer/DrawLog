@@ -5,7 +5,7 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    Register
+                    Registro
                 </h1>
             </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="column is-5">
             <div class="card">
                 <header class="card-header">
-                    <p class="card-header-title">Register</p>
+                    <p class="card-header-title">Registro</p>
                 </header>
 
                 <div class="card-content">
@@ -25,7 +25,7 @@
 
                         <div class="field is-horizontal">
                             <div class="field-label">
-                                <label class="label">Name</label>
+                                <label class="label">Nickname</label>
                             </div>
 
                             <div class="field-body">
@@ -46,7 +46,7 @@
 
                         <div class="field is-horizontal">
                             <div class="field-label">
-                                <label class="label">E-mail Address</label>
+                                <label class="label">E-mail</label>
                             </div>
 
                             <div class="field-body">
@@ -87,7 +87,7 @@
 
                         <div class="field is-horizontal">
                             <div class="field-label">
-                                <label class="label">Confirm Password</label>
+                                <label class="label">Confirmar Password</label>
                             </div>
 
                             <div class="field-body">
@@ -106,7 +106,7 @@
                             <div class="field-body">
                                 <div class="field is-grouped">
                                     <div class="control">
-                                        <button type="submit" class="button is-primary">Register</button>
+                                        <button type="submit" class="button is-primary">Registrarse</button>
                                     </div>
                                 </div>
                             </div>

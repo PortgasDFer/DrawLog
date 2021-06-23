@@ -32,7 +32,7 @@
     </div>
     <div class="navbar-end">
         <div class="navbar-item"> 
-            <a href="misIlustraciones/create"><button class="button is-link is-rounded">Sube tus ilustraciones &nbsp;<i class="fa fa-upload" aria-hidden="true"></i></button></a> 
+            <a href="/misIlustraciones/create"><button class="button is-link is-rounded">Sube tus ilustraciones &nbsp;<i class="fa fa-upload" aria-hidden="true"></i></button></a> 
         </div>      
         <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="#">{{ Auth::user()->name }}</a>
@@ -42,7 +42,7 @@
                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     Logout
                 </a>
-                <a class="navbar-item" href="/profiles">
+                <a class="navbar-item" href="/myprofile">
                     Perfil
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST"

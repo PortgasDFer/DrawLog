@@ -84,7 +84,7 @@ class CategoriasController extends Controller
      */
     public function edit($id)
     {
-        $categoria=Categoria::find($id)->firstOrFail();
+        $categoria=Categoria::where('id','=',$id)->firstOrFail();
         return view('IntAdmin.intCategorias.edit',compact('categoria'));
     }
 
@@ -97,7 +97,7 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categoria=Categoria::find($id)->firstOrFail();
+        $categoria=Categoria::where('id','=',$id)->firstOrFail();
         $categoria->name=$request->input('nombre');
         $categoria->description=$request->input('descripcion');
         $categoria->color=$request->input('color');

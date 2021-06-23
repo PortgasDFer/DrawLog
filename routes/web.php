@@ -20,6 +20,9 @@ Route::get('/top-ilustraciones', function() {
     return view('mejores');
 });
 
+Route::get('/ilustraciones', function(){
+    return view('IntUsers.ilustraciones.lonely');
+});
 //Rutas administrador
 //
 //Categorias
@@ -37,6 +40,7 @@ Route::get('/reporte','ReportesController@reporte')->name('reportes.reporte');
 //Perfiles
 //
 Route::resource('/profiles','ProfilesController');
+Route::get('/myprofile','ProfilesController@myProfile')->name('my.profile');
 //
 //Ilustraciones
 //

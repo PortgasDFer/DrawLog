@@ -19,21 +19,21 @@
 			<div class="field">	
 				<label class="label">Ilustración</label>
 				<div id="file-js-example" class="file has-name">
-	              <label class="file-label">
-	                <input class="file-input" type="file" name="resume">
-	                <span class="file-cta">
-	                  <span class="file-icon">
-	                    <i class="fa fa-upload" aria-hidden="true"></i>
-	                  </span>
-	                  <span class="file-label">
-	                    Escoge un archivo…
-	                  </span>
-	                </span>
-	                <span class="file-name">
-	                  No se ha seleccionado
-	                </span>
-	              </label>
-	            </div>
+          <label class="file-label">
+            <input class="file-input" type="file" name="draw">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+              </span>
+              <span class="file-label">
+                Escoge un archivo…
+              </span>
+            </span>
+            <span class="file-name">
+              No se ha seleccionado
+            </span>
+          </label>
+        </div>
 			</div>	
 		  <div class="field">
 		    <label class="label">Nombre</label>
@@ -45,9 +45,23 @@
 		  <div class="field">
 		    <label class="label">Precio</label>
 		    <div class="control">
-		      <input class="input" type="text" placeholder="Arte generado por computadora" name="descripcion">
+		      <input class="input" type="text" placeholder="Arte generado por computadora" name="precio">
 		    </div>
 		  </div>
+		  
+		  <div class="field">
+		    <label class="label">Categoría</label>
+		    <div class="control">
+		      <div class="select">
+				  <select class="input" name="categoria">
+				    @foreach($categorias as $cat)
+				    	<option value="{{$cat->id}}">{{$cat->name}}</option>
+				    @endforeach	
+				  </select>
+				</div>
+		    </div>
+		  </div>
+
 		  <div class="field">	
 		  	<label class="label">NSFW</label>
 		  	<div class="field">
@@ -57,7 +71,7 @@
 		  </div>	
 		  <div class="field">	
 		  		<label class="label">Descripción</label>
-		  		<textarea class="textarea is-primary" placeholder="Primary textarea"></textarea>
+		  		<textarea class="textarea is-primary" placeholder="Primary textarea" name="descripcion"></textarea>
 		  </div>		
 		  <div class="field">
 		  	<label class="label">Etiquetas</label>
