@@ -4,58 +4,38 @@
 <section class="section">
 	<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 	  <ul>
-	    <li><a href="/">Inicio</a></li>
-	    <li class="is-active"><a href="#" aria-current="page">Busqueda por etiqueta</a><a href="">#One_Piece</a> </li>
+	    <li><a href="/home">Inicio</a></li>
+	    <li><a href="/tag/{{$tag->slug}}/view">Busqueda por etiqueta #{{$tag->name}}</a></li>
 	  </ul>
 	</nav>
 	<h2 class="is-size-4">Destacados:</h2>
 	 <div class="columns is-multiline is-mobile has-text-centered">
         <!-- section1 -->
+        @forelse($draws as $draw)
         <div class="column is-3-desktop is-6-tablet is-12-mobile">
+          <a href="/draw/{{$draw->slug}}/view">
             <div class="card">
               <div class="card-image">
                 <figure class="image is-4by3">
-                  <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0590169c-ef18-4c44-8524-13912e317da2/d5zcohr-894c9cf9-0b66-4515-86ee-1591f1d11922.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA1OTAxNjljLWVmMTgtNGM0NC04NTI0LTEzOTEyZTMxN2RhMlwvZDV6Y29oci04OTRjOWNmOS0wYjY2LTQ1MTUtODZlZS0xNTkxZjFkMTE5MjIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.97D61jadpG6HnIMi0OuL8dANnDFoGJO-aiXycGtRD5M" alt="Placeholder image">
+                  <img src="/draws/{{$draw->art}}" alt="{{$draw->name_draw}}">
                 </figure>
               </div>
             </div>
-            <p class="is-size-4">One Piece</p>
-            <p class="is-size-6">By: SailorScout96</p>
+          </a>
+            <p class="is-size-4"><a href="/draw/{{$draw->slug}}/view">{{$draw->name_draw}}</a></p>
+            <p class="is-size-6">By: <a href="/user/{{$draw->slug_user}}/profile">{{$draw->name}}</a></p>
         </div>
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://pbs.twimg.com/media/EYOw_1wUcAMOoDl.jpg" alt="Placeholder image">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">Luffy</p>
-            <p class="is-size-6">By:02_nina</p>
+      @empty
+      <section class="section">
+        <div class="container">
+          <h1 class="title">Ooops!</h1>
+          <h2 class="subtitle">
+            No se encontraron resultados, <a href="/misIlustraciones/create">¡Carga una ilustración!</a>
+          </h2>
         </div>
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://i.pinimg.com/640x/c6/34/81/c63481251480f6737eda31ce8ad91419.jpg"/>
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">One Piece</p>
-            <p class="is-size-6">By: Uzumaki235</p>
-        </div>
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="http://pm1.narvii.com/7270/adefb43f2972fadd02a2bc72ca1b5d4d717a5d55r1-2048-1647v2_uhq.jpg">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">Monkey D. Luffy</p>
-            <p class="is-size-6">By: Kirito203</p>
-        </div>
-    </div>
+      </section>
+      @endforelse
+  </div>
 </section>
 <section class="section">
 	<h3 class="is-size-4">Otros resultados</h3>

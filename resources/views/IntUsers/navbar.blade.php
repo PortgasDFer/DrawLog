@@ -11,7 +11,7 @@
   </div>
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
+      <a class="navbar-item" href="/home">
         <i class="fa fa-home" aria-hidden="true"></i>&nbsp; Inicio
       </a>
       <a class="navbar-item">
@@ -19,16 +19,19 @@
       </a>
     </div>
     <div class="navbar-item">
+      <form action="/busqueda/" method="POST">
+        @csrf
+        @method('GET')
       <div class="field has-addons">
+          
           <div class="control">
-            <input class="input" type="text" placeholder="Descubre ilustraciones impresionantes">
+            <input class="input" type="text" placeholder="Descubre ilustraciones impresionantes" name="search">
           </div>
           <div class="control">
-            <a class="button is-link">
-              Buscar &nbsp;<i class="fa fa-search" aria-hidden="true"></i>
-            </a>
+            <button class="button is-link" type="submit"> Buscar &nbsp;<i class="fa fa-search" aria-hidden="true"></i></button>
           </div>
-        </div>
+      </div>
+      </form>
     </div>
     <div class="navbar-end">
         <div class="navbar-item"> 

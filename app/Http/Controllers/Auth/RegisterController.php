@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         $user->roles()->attach(Role::where('name', 'user')->first());
-        $user->slug=Str::slug($user->name.time(),"-");
+        $user->slug_user=Str::slug($user->name.time(),"-");
         $user->save();
 
         $profile=new Profile();

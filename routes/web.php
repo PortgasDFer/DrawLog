@@ -41,12 +41,17 @@ Route::get('/reporte','ReportesController@reporte')->name('reportes.reporte');
 //
 Route::resource('/profiles','ProfilesController');
 Route::get('/myprofile','ProfilesController@myProfile')->name('my.profile');
+Route::get('/user/{usuario}/profile','ProfilesController@profileUser')->name('profile.user');
 //
 //Ilustraciones
 //
 Route::resource('/misIlustraciones','IlustracionesController');
 Route::get('/draw/{ilustracion}/view','IlustracionesController@consultarIlustracion');
 Route::get('/draws/{categoria}/view','IlustracionesController@busquedaxCategoria');
+Route::get('/tag/{tag}/view','IlustracionesController@busquedaxEtiqueta');
+Route::get('/busqueda/','IlustracionesController@busquedaxPalabra');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

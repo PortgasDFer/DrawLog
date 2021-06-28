@@ -71,7 +71,7 @@ class ProfilesController extends Controller
      */
     public function show($slug)
     {
-        $user=User::where('slug','=', $slug)->firstOrFail();
+        $user=User::where('slug_user','=', $slug)->firstOrFail();
         $profile=Profile::where('id_user','=', $user->id)->first();
         return view('IntUsers.perfil.profile',compact('user','profile'));
         
@@ -87,6 +87,16 @@ class ProfilesController extends Controller
         //dd($profile);
         //return $ilustraciones;
         return view('IntUsers.perfil.index',compact('user','profile','ilustraciones'));
+    }
+
+    public function profileUser($slug)
+    {
+        $user=User::where('slug_user','=', $slug)->firstOrFail();
+        $ilustraciones = Ilustracion::where('id_user','=', $user->id)
+                                    ->where('baja','=',0)
+                                    ->get();
+        $profile=Profile::where('id_user','=', $user->id)->firstOrFail();
+        return view('IntUsers.perfil.profile',compact('profile','ilustraciones'));
     }
 
     /**

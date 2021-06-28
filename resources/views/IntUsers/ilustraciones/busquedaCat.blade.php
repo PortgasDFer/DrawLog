@@ -13,15 +13,17 @@
         <!-- section1 -->
         @forelse($draws as $draw)
           <div class="column is-3-desktop is-6-tablet is-12-mobile">
+            <a href="/draw/{{$draw->slug}}/view">
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
-                    <img src="https://i.pinimg.com/originals/24/97/ee/2497ee8b9b9f4920c631d42a07ae6edf.jpg" alt="Placeholder image">
+                    <img src="/draws/{{$draw->art}}" alt="{{$draw->name_draw}}">
                   </figure>
                 </div>
               </div>
-              <p class="is-size-4">Sailor Moon</p>
-              <p class="is-size-6">By: SailorScout96</p>
+            </a>
+              <p class="is-size-4"><a href="/draw/{{$draw->slug}}/view">{{$draw->name_draw}}</a></p>
+              <p class="is-size-6">By: <a href="/user/{{$draw->slug_user}}/profile">{{$draw->name}}</a></p>
           </div>
         @empty
         <section class="section">

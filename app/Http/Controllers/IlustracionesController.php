@@ -8,6 +8,7 @@ use App\Ilustracion;
 use App\Categoria;
 use App\User;
 use App\Profile;
+use App\Tag;
 use Alert;
 use Carbon\Carbon;
 use Redirect,Response;
@@ -91,7 +92,7 @@ class IlustracionesController extends Controller
     public function consultarIlustracion($slug)
     {
         $draw=Ilustracion::where('slug','=',$slug)->firstOrFail();
-        $autor=User::find($draw->id_user)->firstOrFail();
+        $autor=User::where('id','=',$draw->id_user)->firstOrFail();
         $profile=Profile::where('id_user','=',$autor->id)->firstOrFail();
 
         return view('IntUsers.ilustraciones.lonely',compact('draw','autor','profile'));
@@ -100,8 +101,39 @@ class IlustracionesController extends Controller
     public function busquedaxCategoria($name)
     {
         $categoria=Categoria::where('name','=',$name)->firstOrFail();
-        $draws=Ilustracion::where('id_categoria','=', $categoria->id)->get();
+        $draws=Ilustracion::select('ilustraciones.art','ilustraciones.name_draw','ilustraciones.slug','users.name','users.slug_user')
+        ->join('users','users.id','=','ilustraciones.id_user')
+        ->where('ilustraciones.id_categoria','=',$categoria->id)
+        ->where('ilustraciones.baja','=',0)
+        ->get();
         return view('IntUsers.ilustraciones.busquedaCat',compact('categoria','draws'));
+    }
+
+    public function busquedaxEtiqueta($slug)
+    {
+        
+        $tag=Tag::where('slug','=',$slug)->firstOrFail();
+
+        $draws=Ilustracion::select('ilustraciones.art','ilustraciones.name_draw','ilustraciones.slug','users.name','users.slug_user')
+                            ->join('users','users.id','=','ilustraciones.id_user')
+                            ->withAnyTag($slug)
+                            ->where('ilustraciones.baja','=',0)
+                            ->get();
+
+        return view('IntUsers.ilustraciones.busquedaEtiqueta', compact('tag','draws'));
+    }
+
+    public function busquedaxPalabra(Request $request)
+    {
+        $palabra = $request->get('search');
+
+        $draws=Ilustracion::select('ilustraciones.art','ilustraciones.name_draw','ilustraciones.slug','users.name','users.slug_user')
+                            ->join('users','users.id','=','ilustraciones.id_user')
+                            ->where('ilustraciones.baja','=',0)
+                            ->search($palabra)
+                            ->get();
+                            
+        return view('IntUsers.ilustraciones.busqueda',compact('palabra','draws'));
     }
     /**
      * Show the form for editing the specified resource.
