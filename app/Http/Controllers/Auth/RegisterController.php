@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Profile;
 use App\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str as Str;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -71,6 +73,14 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         $user->roles()->attach(Role::where('name', 'user')->first());
+        $user->slug=Str::slug($user->name.time(),"-");
+        $user->save();
+
+        $profile=new Profile();
+        $profile->id_user=$user->id;
+        $profile->save();
+
+
         return $user;
     }
 }

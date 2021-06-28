@@ -241,56 +241,36 @@
       </div>
     </div>
     <div class='columns is-mobile'>
+      @forelse($ilustraciones as $draw)
       <div class='column is-3-tablet is-6-mobile'>
         <div class='card'>
-          <div class='card-image'>
-            <figure class='image is-4by3'>
-              <img alt='' src='https://http2.mlstatic.com/D_NQ_NP_894309-MLM42729402901_072020-O.jpg'>
-            </figure>
-          </div>
+          <a href="/draw/{{$draw->slug}}/view">
+            <div class='card-image'>
+              <figure class='image is-4by3'>
+                <img alt='' src='/draws/{{$draw->art}}'>
+              </figure>
+            </div>
+          </a>
           <div class='card-content'>
             <div class='content'>
-              <span class='tag is-dark subtitle'>Naruto Modo sabio</span>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <span class='tag is-dark subtitle'>{{$draw->name_draw}}</span>
+              <p>{{$draw->descripcion}}</p>
             </div>
           </div>
           <footer class='card-footer'>
-            <a class='card-footer-item'>Editar</a>
-            <a class='card-footer-item'>Eliminar</a>
+            <a class='card-footer-item' href="/misIlustraciones/{{$draw->slug}}/edit">Editar</a>
+              <form method="POST" action="/misIlustraciones/{{$draw->slug}}" class="card-footer-item">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="button is-danger is-outlined">Eliminar </button>
+              </form>
           </footer>
         </div>
         <br>
       </div>
-      <div class='column is-3-tablet is-6-mobile'>
-        <div class='card'>
-          <div class='card-image'>
-            <figure class='image is-4by3'>
-              <img alt='' src='https://i0.wp.com/i0.wp.com/todoimagenes.co/wp-content/uploads/2018/04/maravillosos-animales-para-dibujar-a-lapiz-faciles-pin-de-juan-pablo-en-anime-pinterest-im-genes.jpg'>
-            </figure>
-          </div>
-          <div class='card-content'>
-            <div class='content'>
-              <span class='tag is-dark subtitle'>Pikachu</span>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  </p>
-            </div>
-          </div>
-          <footer class='card-footer'>
-            <a class='card-footer-item'>Editar</a>
-            <a class='card-footer-item'>Eliminar</a>
-          </footer>
-        </div>
-        <br>
-      </div>
+      @empty
+        <h2>No ha subido ilustraciones todavía.</h2>
+      @endforelse
     </div>
   </div>
 </div>

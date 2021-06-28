@@ -17,17 +17,18 @@
 			<div class="column is-4-desktop is-6-tablet is-12-mobile">
 				<label class="label">Imagen a editar</label>
 					<figure class="image is-4by5">
-	  			<img src="http://pm1.narvii.com/7714/4ccb01d8643ec68b5ac8b096f1d45259fca267c9r1-800-800v2_uhq.jpg">
+	  			<img src="/draws/{{$draw->art}}">
 					</figure>
 			</div>
 			<div class="column is-8-desktop is-6-tablet is-12-mobile">
-				<form class="box is-primary" action="/misIlustraciones" method="POST">
+				<form class="box is-primary" action="/misIlustraciones/{{$draw->slug}}" method="POST" enctype="multipart/form-data">
 				@csrf
+				@method('PUT')
 			<div class="field">	
 				<label class="label">Ilustración</label>
 				<div id="file-js-example" class="file has-name">
           <label class="file-label">
-            <input class="file-input" type="file" name="resume">
+            <input class="file-input" type="file" name="dibujo">
             <span class="file-cta">
               <span class="file-icon">
                 <i class="fa fa-upload" aria-hidden="true"></i>
@@ -45,29 +46,42 @@
 		  <div class="field">
 		    <label class="label">Nombre</label>
 		    <div class="control">
-		      <input class="input" type="text" placeholder="Ej: Arte digital" name="nombre">
+		      <input class="input" type="text" placeholder="Ej: Arte digital" name="nombre" value="{{$draw->name_draw}}">
 		    </div>
 		  </div>
 		  <div class="field">
 		    <label class="label">Precio</label>
 		    <div class="control">
-		      <input class="input" type="text" placeholder="Arte generado por computadora" name="descripcion">
+		      <input class="input" type="text" placeholder="Arte generado por computadora" name="precio" value="{{$draw->precio}}">
+		    </div>
+		  </div>
+		  <div class="field">
+		    <label class="label">Categoría</label>
+		    <div class="control">
+		      <div class="select">
+				  <select class="input" name="categoria">
+				  		<option value="{{$draw->id_categoria}}">Conservar misma categoría</option>
+				    @foreach($categorias as $cat)
+				    	<option value="{{$cat->id}}">{{$cat->name}}</option>
+				    @endforeach	
+				  </select>
+				</div>
 		    </div>
 		  </div>
 		  <div class="field">	
 		  	<label class="label">NSFW</label>
 		  	<div class="field">
-			  <input id="switchColorDefault" type="checkbox" name="switchColorDefault" class="switch" checked="checked">
+			  <input id="switchColorDefault" type="checkbox" name="nsfw" class="switch" checked="checked">
 			  <label for="switchColorDefault">Si</label>
 			</div>
 		  </div>	
 		  <div class="field">	
 		  		<label class="label">Descripción</label>
-		  		<textarea class="textarea is-primary" placeholder="Primary textarea"></textarea>
+		  		<textarea class="textarea is-primary" placeholder="Primary textarea" name="descripcion">{{$draw->descripcion}}</textarea>
 		  </div>		
 		  <div class="field">
 		  	<label class="label">Etiquetas</label>
-		  	<input class="input" type="tags" placeholder="Add Tag" value="Tag1,Tag2,Tag3">
+		  	<input class="input" type="tags" placeholder="Add Tag" value="@foreach($draw->tags as $tag){{$tag->name}},  @endforeach">
 		  </div>
 		  <button type="submit" class="button is-primary">Registrar</button>
 		</form>

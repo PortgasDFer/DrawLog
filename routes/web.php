@@ -45,6 +45,8 @@ Route::get('/myprofile','ProfilesController@myProfile')->name('my.profile');
 //Ilustraciones
 //
 Route::resource('/misIlustraciones','IlustracionesController');
+Route::get('/draw/{ilustracion}/view','IlustracionesController@consultarIlustracion');
+Route::get('/draws/{categoria}/view','IlustracionesController@busquedaxCategoria');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

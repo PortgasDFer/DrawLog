@@ -13,14 +13,13 @@
 </section>
 <section class="section">
 	<div class="container">
-		<form class="box is-primary" action="/misIlustraciones" method="POST">
+		<form class="box is-primary" action="/misIlustraciones" method="POST" enctype="multipart/form-data">
 			@csrf
-
 			<div class="field">	
 				<label class="label">Ilustración</label>
 				<div id="file-js-example" class="file has-name">
           <label class="file-label">
-            <input class="file-input" type="file" name="draw">
+            <input class="file-input" type="file" name="dibujo">
             <span class="file-cta">
               <span class="file-icon">
                 <i class="fa fa-upload" aria-hidden="true"></i>
@@ -65,7 +64,7 @@
 		  <div class="field">	
 		  	<label class="label">NSFW</label>
 		  	<div class="field">
-			  <input id="switchColorDefault" type="checkbox" name="switchColorDefault" class="switch" checked="checked">
+			  <input id="switchColorDefault" type="checkbox" name="nsfw" class="switch" checked="checked">
 			  <label for="switchColorDefault">Si</label>
 			</div>
 		  </div>	
@@ -75,7 +74,7 @@
 		  </div>		
 		  <div class="field">
 		  	<label class="label">Etiquetas</label>
-		  	<input class="input" type="tags" placeholder="Add Tag" value="Tag1,Tag2,Tag3">
+		  	<input class="input" type="tags" placeholder="Add Tag" value="Tag1,Tag2,Tag3" name="tags">
 
 		  </div>
 		  <button type="submit" class="button is-primary">Registrar</button>

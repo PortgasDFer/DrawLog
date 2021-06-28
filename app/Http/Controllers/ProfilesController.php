@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
+use App\Ilustracion;
 use Alert;
 use Redirect;
 
@@ -79,9 +80,13 @@ class ProfilesController extends Controller
     public function myProfile()
     {
         $user = User::find(auth()->id());
-        $profile=Profile::where('id_user','=', $user->id)->first();
+        $ilustraciones = Ilustracion::where('id_user','=', $user->id)
+                                    ->where('baja','=',0)
+                                    ->get();
+        $profile=Profile::where('id_user','=', $user->id)->firstOrFail();
         //dd($profile);
-        return view('IntUsers.perfil.index',compact('user','profile'));
+        //return $ilustraciones;
+        return view('IntUsers.perfil.index',compact('user','profile','ilustraciones'));
     }
 
     /**

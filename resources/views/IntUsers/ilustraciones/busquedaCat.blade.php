@@ -5,58 +5,39 @@
 	<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
 	  <ul>
 	    <li><a href="/">Inicio</a></li>
-	    <li class="is-active"><a href="#" aria-current="page">Busqueda por categoría</a> <button class="button is-rounded" style="background-color: #ff9931; color:white;">Anime</button></li>
+	    <a href="/draws/{{$categoria->name}}/view"><button class="button is-rounded" style="background-color:{{$categoria->color}}; color:white;">{{$categoria->name}}</button></a>
 	  </ul>
 	</nav>
 	<h2 class="is-size-4">Destacados:</h2>
 	 <div class="columns is-multiline is-mobile has-text-centered">
         <!-- section1 -->
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://i.pinimg.com/originals/24/97/ee/2497ee8b9b9f4920c631d42a07ae6edf.jpg" alt="Placeholder image">
-                </figure>
+        @forelse($draws as $draw)
+          <div class="column is-3-desktop is-6-tablet is-12-mobile">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img src="https://i.pinimg.com/originals/24/97/ee/2497ee8b9b9f4920c631d42a07ae6edf.jpg" alt="Placeholder image">
+                  </figure>
+                </div>
               </div>
-            </div>
-            <p class="is-size-4">Sailor Moon</p>
-            <p class="is-size-6">By: SailorScout96</p>
-        </div>
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://www.gvaat.com/wp-content/uploads/2020/04/final_how_to_draw_anime_girl_hair_beginners.gif" alt="Placeholder image">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">Asuka Langley</p>
-            <p class="is-size-6">By:02_nina</p>
-        </div>
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://i.pinimg.com/originals/f8/28/46/f82846378c945757d100363c8091bf20.jpg"/>
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">Sailor Moon</p>
-            <p class="is-size-6">By: Uzumaki235</p>
-        </div>
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="http://pm1.narvii.com/7270/adefb43f2972fadd02a2bc72ca1b5d4d717a5d55r1-2048-1647v2_uhq.jpg">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">Monkey D. Luffy</p>
-            <p class="is-size-6">By: Kirito203</p>
-        </div>
+              <p class="is-size-4">Sailor Moon</p>
+              <p class="is-size-6">By: SailorScout96</p>
+          </div>
+        @empty
+        <section class="section">
+          <div class="container">
+            <h1 class="title">Ooops!</h1>
+            <h2 class="subtitle">
+              Aún no se han cargado ilustraciones para esta categoría, <a href="/misIlustraciones/create">¡Se el primero en cargar una!</a>
+            </h2>
+          </div>
+        </section>
+        @endforelse
     </div>
 </section>
+
+
+
 <section class="section">
 	<h3 class="is-size-4">Otros resultados</h3>
 	<div class="columns is-multiline is-mobile has-text-centered">

@@ -5,7 +5,7 @@
 <div class="columns is-marginless is-centered is-desktop ">
     @foreach($categorias as $c)
         <div class="column is-2 is-mobile-is-full">
-            <button class="button is-rounded" style="background-color:{{$c->color}}; color:white;">{{$c->name}}</button>
+            <a href="/draws/{{$c->name}}/view"><button class="button is-rounded" style="background-color:{{$c->color}}; color:white;">{{$c->name}}</button></a>
         </div>
     @endforeach
 </div>
