@@ -175,7 +175,7 @@
             The users profile bio would go here, of course. It could be two lines or more or whatever. We should probably limit the amount of characters to ~500 at most though.
           </p>
         </div>
-        <div class='column is-2-tablet is-4-mobile has-text-centered'>
+       <div class='column is-2-tablet is-4-mobile has-text-centered'>
           <p class='stat-val'>{{$profile->visitas}}</p>
           <p class='stat-key'>Visitas</p>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categoria;
+use App\Ilustracion;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,13 @@ class HomeController extends Controller
         $request->user()->authorizeRoles(['user', 'admin']);
         if($request->user()->hasRole('user')){
             $categorias=Categoria::where('baja','=',0)->inRandomOrder()->limit(6)->get();;
-            return view('welcome',compact('categorias'));
+            $draws=Ilustracion::select('ilustraciones.art','ilustraciones.name_draw','ilustraciones.slug','users.name','users.slug_user')
+                            ->join('users','users.id','=','ilustraciones.id_user')
+                            ->where('ilustraciones.baja','=',0)
+                            ->inRandomOrder()
+                            ->limit(4)
+                            ->get();
+            return view('welcome',compact('categorias','draws'));
         }elseif($request->user()->hasRole('admin')){
             return view('dashboard');
         }

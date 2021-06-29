@@ -44,24 +44,28 @@
 			</div>	
 			<div class="column is-6-desktop is-5-tablet is-12-mobile">
 				<p class="is-size-3">Comentarios</p>
+				@forelse($comentarios as $coment)
 				<article class="media">
 				  <figure class="media-left">
 				    <p class="image is-64x64">
-				      <img src="https://bulma.io/images/placeholders/128x128.png">
+				      <img src="/avatars/{{$coment->avatar}}">
 				    </p>
 				  </figure>
 				  <div class="media-content">
 				    <div class="content">
 				      <p>
-				        <strong>Barbara Middleton</strong>
+				        <strong>{{$coment->name}}</strong>
 				        <br>
-				        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
+				        {{$coment->comentario}}.
 				        <br>
-				        <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
 				      </p>
 				    </div>
 				  </div>
 				</article>
+				@empty
+				<h2>¡Se el primero en comentar!</h2>
+				@endforelse
+				
 				<article class="media">
 				  <figure class="media-left">
 				    <p class="image is-64x64">

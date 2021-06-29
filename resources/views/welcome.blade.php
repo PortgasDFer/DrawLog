@@ -24,50 +24,21 @@
     <h3 class="is-size-3">Trabajos recomendados</h3>
     <div class="columns is-multiline is-mobile has-text-centered">
         <!-- section1 -->
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="img/exampleimg1.jpg" alt="Placeholder image">
-                </figure>
+        @foreach($draws as $draw)
+          <div class="column is-3-desktop is-6-tablet is-12-mobile">
+              <div class="card">
+                <div class="card-image">
+                  <a href="/draw/{{$draw->slug}}/view">
+                    <figure class="image is-4by3">
+                      <img src="draws/{{$draw->art}}" alt="Placeholder image">
+                    </figure>
+                  </a>
+                </div>
               </div>
-            </div>
-            <p class="is-size-4">One</p>
-            <p class="is-size-6">$20</p>
-        </div>
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="img/onegai.jpg" alt="Placeholder image">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">Two</p>
-            <p class="is-size-6">$20</p>
-        </div>
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="img/ibuki.jpg" alt="Placeholder image">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">Three</p>
-            <p class="is-size-6">$20</p>
-        </div>
-        <div class="column is-3-desktop is-6-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://mocah.org/uploads/posts/1086379-drawing-illustration-anime-Neon-Genesis-Evangelion-Asuka-Langley-Soryu-cartoon-sketch-organ.png" alt="Placeholder image">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">Four</p>
-            <p class="is-size-6">$20</p>
-        </div>
+              <p class="is-size-4"><a href="/draw/{{$draw->slug}}/view">{{$draw->name_draw}}</a></p>
+              <p class="is-size-6">By: <a href="/user/{{$draw->slug_user}}/profile">{{$draw->name}}</a></p>
+          </div>
+        @endforeach
         <!-- section2 -->
         <div class="column is-3-tablet is-6-mobile">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMJRQBG-108Reo5TZmDK8A9rNoiw3IRfUIOkbU2yF7NpsyRxXl"/>

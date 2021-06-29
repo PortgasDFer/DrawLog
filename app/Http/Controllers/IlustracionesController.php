@@ -100,23 +100,38 @@ class IlustracionesController extends Controller
         $autor=User::where('id','=',$draw->id_user)->firstOrFail();
         $profile=Profile::where('id_user','=',$autor->id)->firstOrFail();
 
-        $comentarios=Comentario::where('id_ilustracion','=',$draw->id_ilustracion)->get();
+        $comentarios=Comentario::select('comentarios.comentario','comentarios.id_comentario','users.name','users.slug_user','ilustraciones.slug','profiles.avatar')
+                        ->join('users','comentarios.id_user','=','users.id')
+                        ->join('ilustraciones','comentarios.id_ilustracion','=','ilustraciones.id_ilustracion')
+                        ->join('profiles','profiles.id_user','=','users.id')
+                        ->where('comentarios.id_ilustracion','=',$draw->id_ilustracion)
+                        ->get();
 
 
-        
-        return view('IntUsers.ilustraciones.lonely',compact('draw','autor','profile','visitante','comentarios'));
+        //return $comentarios;
+        return view('IntUsers.ilustraciones.lonely', compact('draw','autor','profile','visitante','comentarios'));
     }
 
-    public function comentario (Request $request, Ilustracion $ilustracion)
+    public function comentario (Request $request, $slug)
     {
-        $draw=Ilustracion::where('slug','=',$ilustracion)->firstOrFail();
+        $user = User::find(auth()->id());
+        $draw=Ilustracion::where('slug','=',$slug)->firstOrFail();
+        $autor=User::where('id','=',$draw->id_user)->firstOrFail();
+        $profile=Profile::where('id_user','=',$autor->id)->firstOrFail();
+        $visitante=Profile::where('id_user','=',$user->id)->firstOrFail();
         $comentario=new Comentario();
         $comentario->comentario=$request->input('comentario');
         $comentario->id_user=$request->input('id_user');
         $comentario->id_ilustracion=$draw->id_ilustracion;
         $comentario->save();
+        $comentarios=Comentario::select('comentarios.comentario','comentarios.id_comentario','users.name','users.slug_user','ilustraciones.slug','profiles.avatar')
+                        ->join('users','comentarios.id_user','=','users.id')
+                        ->join('ilustraciones','comentarios.id_ilustracion','=','ilustraciones.id_ilustracion')
+                        ->join('profiles','profiles.id_user','=','users.id')
+                        ->where('comentarios.id_ilustracion','=',$draw->id_ilustracion)
+                        ->get();
         alert()->success('DrawLog', 'Comentario publicado');
-        return redirect()->route( 'draw.ilustracion' )->with( [ 'ilustracion' => $ilustracion ] );
+        return view('IntUsers.ilustraciones.lonely', compact('draw','autor','profile','visitante','comentarios'));
     }
     public function busquedaxCategoria($name)
     {
