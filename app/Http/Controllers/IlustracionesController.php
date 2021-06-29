@@ -9,6 +9,7 @@ use App\Categoria;
 use App\User;
 use App\Profile;
 use App\Tag;
+use App\Comentario;
 use Alert;
 use Carbon\Carbon;
 use Redirect,Response;
@@ -91,13 +92,32 @@ class IlustracionesController extends Controller
 
     public function consultarIlustracion($slug)
     {
+        $user = User::find(auth()->id());
+
+        $visitante=Profile::where('id_user','=',$user->id)->firstOrFail();
+
         $draw=Ilustracion::where('slug','=',$slug)->firstOrFail();
         $autor=User::where('id','=',$draw->id_user)->firstOrFail();
         $profile=Profile::where('id_user','=',$autor->id)->firstOrFail();
 
-        return view('IntUsers.ilustraciones.lonely',compact('draw','autor','profile'));
+        $comentarios=Comentario::where('id_ilustracion','=',$draw->id_ilustracion)->get();
+
+
+        
+        return view('IntUsers.ilustraciones.lonely',compact('draw','autor','profile','visitante','comentarios'));
     }
 
+    public function comentario (Request $request, Ilustracion $ilustracion)
+    {
+        $draw=Ilustracion::where('slug','=',$ilustracion)->firstOrFail();
+        $comentario=new Comentario();
+        $comentario->comentario=$request->input('comentario');
+        $comentario->id_user=$request->input('id_user');
+        $comentario->id_ilustracion=$draw->id_ilustracion;
+        $comentario->save();
+        alert()->success('DrawLog', 'Comentario publicado');
+        return redirect()->route( 'draw.ilustracion' )->with( [ 'ilustracion' => $ilustracion ] );
+    }
     public function busquedaxCategoria($name)
     {
         $categoria=Categoria::where('name','=',$name)->firstOrFail();

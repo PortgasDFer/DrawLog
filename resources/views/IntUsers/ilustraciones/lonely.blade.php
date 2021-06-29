@@ -65,20 +65,24 @@
 				<article class="media">
 				  <figure class="media-left">
 				    <p class="image is-64x64">
-				      <img src="https://bulma.io/images/placeholders/128x128.png">
+				      <img src="/avatars/{{$visitante->avatar}}">
 				    </p>
 				  </figure>
 				  <div class="media-content">
-				    <div class="field">
-				      <p class="control">
-				        <textarea class="textarea" placeholder="Add a comment..."></textarea>
-				      </p>
-				    </div>
-				    <div class="field">
-				      <p class="control">
-				        <button class="button">Post comment</button>
-				      </p>
-				    </div>
+				  	<form action="/comentario/{{$draw->slug}}" method="POST">
+				  		@csrf 
+				  		<div class="field">
+					      <p class="control">
+					        <textarea class="textarea" placeholder="Add a comment..." name="comentario"></textarea>
+					        <input type="hidden" name="id_user" value="{{Auth::user()->id}}">
+					      </p>
+					    </div>
+					    <div class="field">
+					      <p class="control">
+					        <button class="button is-dark" type="submit">Publicar comentario</button>
+					      </p>
+					    </div>
+				  	</form>
 				  </div>
 				</article>	
 			</div>

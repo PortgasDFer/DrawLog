@@ -46,10 +46,11 @@ Route::get('/user/{usuario}/profile','ProfilesController@profileUser')->name('pr
 //Ilustraciones
 //
 Route::resource('/misIlustraciones','IlustracionesController');
-Route::get('/draw/{ilustracion}/view','IlustracionesController@consultarIlustracion');
+Route::get('/draw/{ilustracion}/view','IlustracionesController@consultarIlustracion')->name('draw.ilustracion');
 Route::get('/draws/{categoria}/view','IlustracionesController@busquedaxCategoria');
 Route::get('/tag/{tag}/view','IlustracionesController@busquedaxEtiqueta');
 Route::get('/busqueda/','IlustracionesController@busquedaxPalabra');
+Route::post('/comentario/{ilustracion}','IlustracionesController@comentario');
 
 
 Auth::routes();

@@ -86,7 +86,11 @@ class ProfilesController extends Controller
         $profile=Profile::where('id_user','=', $user->id)->firstOrFail();
         //dd($profile);
         //return $ilustraciones;
-        return view('IntUsers.perfil.index',compact('user','profile','ilustraciones'));
+        //
+        $noIlustraciones = Ilustracion::where('id_user','=', $user->id)
+                                    ->where('baja','=',0)
+                                    ->count();
+        return view('IntUsers.perfil.index',compact('user','profile','ilustraciones','noIlustraciones'));
     }
 
     public function profileUser($slug)
@@ -96,7 +100,12 @@ class ProfilesController extends Controller
                                     ->where('baja','=',0)
                                     ->get();
         $profile=Profile::where('id_user','=', $user->id)->firstOrFail();
-        return view('IntUsers.perfil.profile',compact('profile','ilustraciones'));
+        $profile->visitas+=1;
+        $profile->save();
+        $noIlustraciones = Ilustracion::where('id_user','=', $user->id)
+                                    ->where('baja','=',0)
+                                    ->count();
+        return view('IntUsers.perfil.profile',compact('profile','ilustraciones','user','noIlustraciones'));
     }
 
     /**

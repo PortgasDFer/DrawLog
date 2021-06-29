@@ -176,15 +176,15 @@
           </p>
         </div>
         <div class='column is-2-tablet is-4-mobile has-text-centered'>
-          <p class='stat-val'>30</p>
+          <p class='stat-val'>{{$profile->visitas}}</p>
           <p class='stat-key'>Visitas</p>
         </div>
         <div class='column is-2-tablet is-4-mobile has-text-centered'>
-          <p class='stat-val'>10</p>
+          <p class='stat-val'>{{$profile->seguidores}}</p>
           <p class='stat-key'>Seguidores</p>
         </div>
         <div class='column is-2-tablet is-4-mobile has-text-centered'>
-          <p class='stat-val'>3</p>
+          <p class='stat-val'>{{$noIlustraciones}}</p>
           <p class='stat-key'>Ilustraciones</p>
         </div>
       </div>
@@ -225,7 +225,7 @@
         <div class='column is-2-tablet user-property-count has-text-centered'>
           <p class='subtitle is-5'>
             <strong></strong>
-            2
+            {{$noIlustraciones}}
             <br>
             Ilustraciones
           </p>
