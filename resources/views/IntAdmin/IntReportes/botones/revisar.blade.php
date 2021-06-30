@@ -1,0 +1,1 @@
+<a href="/revisar-reporte/{{$id_reporte}}/"><button class="button is-primary is-outlined"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>

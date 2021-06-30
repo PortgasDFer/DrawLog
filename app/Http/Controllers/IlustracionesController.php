@@ -10,6 +10,7 @@ use App\User;
 use App\Profile;
 use App\Tag;
 use App\Comentario;
+use App\Reporte;
 use Alert;
 use Carbon\Carbon;
 use Redirect,Response;
@@ -235,5 +236,50 @@ class IlustracionesController extends Controller
         $draw->save();
         alert()->warning('DrawLog', 'Publicación eliminada');
         return Redirect::to('/myprofile');
+    }
+
+    public function like($slug)
+    {
+        $draw=Ilustracion::where('slug','=',$slug)->firstOrFail();
+        $draw->likes+=1;
+        $draw->save();
+        $user = User::find(auth()->id());
+        $autor=User::where('id','=',$draw->id_user)->firstOrFail();
+        $profile=Profile::where('id_user','=',$autor->id)->firstOrFail();
+        $visitante=Profile::where('id_user','=',$user->id)->firstOrFail();
+        $comentarios=Comentario::select('comentarios.comentario','comentarios.id_comentario','users.name','users.slug_user','ilustraciones.slug','profiles.avatar')
+                        ->join('users','comentarios.id_user','=','users.id')
+                        ->join('ilustraciones','comentarios.id_ilustracion','=','ilustraciones.id_ilustracion')
+                        ->join('profiles','profiles.id_user','=','users.id')
+                        ->where('comentarios.id_ilustracion','=',$draw->id_ilustracion)
+                        ->get();
+        alert()->success('DrawLog', 'Has dado like a esta foto ♥');
+        return view('IntUsers.ilustraciones.lonely', compact('draw','autor','profile','visitante','comentarios'));
+    }
+
+
+    public function reporte(Request $request, $slug)
+    {
+        $draw=Ilustracion::where('slug','=',$slug)->firstOrFail();
+        $draw->estado="Reportada";
+        $draw->save();
+        $user = User::find(auth()->id());
+        $reporte = new Reporte();
+        $reporte->descripcion = $request->input('reporte');
+        $reporte->estado = "Abierto";
+        $reporte->id_ilustracion=$draw->id_ilustracion;
+        $reporte->id_user=$user->id;
+        $reporte->save();
+        $autor=User::where('id','=',$draw->id_user)->firstOrFail();
+        $profile=Profile::where('id_user','=',$autor->id)->firstOrFail();
+        $visitante=Profile::where('id_user','=',$user->id)->firstOrFail();
+        $comentarios=Comentario::select('comentarios.comentario','comentarios.id_comentario','users.name','users.slug_user','ilustraciones.slug','profiles.avatar')
+                        ->join('users','comentarios.id_user','=','users.id')
+                        ->join('ilustraciones','comentarios.id_ilustracion','=','ilustraciones.id_ilustracion')
+                        ->join('profiles','profiles.id_user','=','users.id')
+                        ->where('comentarios.id_ilustracion','=',$draw->id_ilustracion)
+                        ->get();
+        alert()->warning('DrawLog', 'Tú reporte se ha enviado con éxito');
+        return view('IntUsers.ilustraciones.lonely', compact('draw','autor','profile','visitante','comentarios'));
     }
 }

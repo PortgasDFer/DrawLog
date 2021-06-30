@@ -21,71 +21,10 @@
 					    		<th>Usuario</th>
 					    		<th>Ilustración</th>
 					    		<th>Estado</th>
-					    		<th>Denuncia</th>
 					    		<th>Revisar</th>
 				    		</tr>
 				    	</thead>
 				    	<tbody>
-			    			<tr>
-			    				<td>Luffy2010</td>
-			    				<td>
-			    					<figure class="image is-64x64">
-										  <img src="https://bulma.io/images/placeholders/128x128.png">
-										</figure></td>
-			    				<td>SIN REVISAR</td>
-			    				<td>Im210</td>
-			    				<td><button class="button is-link is-outlined"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
-			    			</tr>
-			    			<tr>
-			    				<td>Luffy2010</td>
-			    				<td>
-			    					<figure class="image is-64x64">
-										  <img src="https://bulma.io/images/placeholders/128x128.png">
-										</figure></td>
-			    				<td>SIN REVISAR</td>
-			    				<td>Im210</td>
-			    				<td><button class="button is-link is-outlined"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
-			    			</tr>
-			    			<tr>
-			    				<td>Luffy2010</td>
-			    				<td>
-			    					<figure class="image is-64x64">
-										  <img src="https://bulma.io/images/placeholders/128x128.png">
-										</figure></td>
-			    				<td>SIN REVISAR</td>
-			    				<td>Im210</td>
-			    				<td><button class="button is-link is-outlined"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
-			    			</tr>
-			    			<tr>
-			    				<td>Luffy2010</td>
-			    				<td>
-			    					<figure class="image is-64x64">
-										  <img src="https://bulma.io/images/placeholders/128x128.png">
-										</figure></td>
-			    				<td>SIN REVISAR</td>
-			    				<td>Im210</td>
-			    				<td><button class="button is-link is-outlined"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
-			    			</tr>
-			    			<tr>
-			    				<td>Luffy2010</td>
-			    				<td>
-			    					<figure class="image is-64x64">
-										  <img src="https://bulma.io/images/placeholders/128x128.png">
-										</figure></td>
-			    				<td>SIN REVISAR</td>
-			    				<td>Im210</td>
-			    				<td><button class="button is-link is-outlined"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
-			    			</tr>
-			    			<tr>
-			    				<td>Luffy2010</td>
-			    				<td>
-			    					<figure class="image is-64x64">
-										  <img src="https://bulma.io/images/placeholders/128x128.png">
-										</figure></td>
-			    				<td>SIN REVISAR</td>
-			    				<td>Im210</td>
-			    				<td><button class="button is-link is-outlined"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
-			    			</tr>
 				    	</tbody>
 				    </table>
 				</div>
@@ -103,5 +42,40 @@
 @endsection
 
 @section('scripts')
-
+<script>
+	$(document).ready( function () {
+	    $('#reportes').DataTable({
+	        "processing": true,
+	        "serverSide": true,
+	        "autoWidth": false,
+	        "ajax": "/obtenerReportes",
+	        "columns": [
+	            {data:'name'},
+	            {data:'name_draw'},
+	            {data:'estado'},
+	            {data:'view',orderable:false, searchable:false}
+	        ],
+	        language: {
+	          "decimal": "",
+	          "emptyTable": "No hay información",
+	          "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+	          "infoEmpty": "Mostrando 0 to 0 of 0 Documentos",
+	          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+	          "infoPostFix": "",
+	          "thousands": ",",
+	          "lengthMenu": "Mostrar _MENU_ Registros",
+	          "loadingRecords": "Cargando...",
+	          "processing": "Procesando...",
+	          "search": "Buscar:",
+	          "zeroRecords": "Sin resultados encontrados",
+	          "paginate": {
+	              "first": "Primero",
+	              "last": "Ultimo",
+	              "next": "Siguiente",
+	              "previous": "Anterior"
+	          }
+	        }
+	    });
+	  });
+</script>
 @endsection

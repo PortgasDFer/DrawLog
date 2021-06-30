@@ -34,6 +34,10 @@ Route::get('/obtenerCategorias','CategoriasController@datatable')->name('datatab
 //
 Route::get('/reportes-admin','ReportesController@index')->name('reportes.index');
 Route::get('/reporte','ReportesController@reporte')->name('reportes.reporte');
+Route::get('/obtenerReportes','ReportesController@datatable')->name('datatable.reportes');
+Route::get('/revisar-reporte/{ilustracion}','ReportesController@revisarReporte')->name('revisar.reporte');
+Route::post('/denegar/{reporte}','ReportesController@denegar')->name('denegar.reporte');
+Route::post('/aprobar/{reporte}','ReportesController@aprobar')->name('aprobar.reporte');
 
 
 //
@@ -51,6 +55,8 @@ Route::get('/draws/{categoria}/view','IlustracionesController@busquedaxCategoria
 Route::get('/tag/{tag}/view','IlustracionesController@busquedaxEtiqueta');
 Route::get('/busqueda/','IlustracionesController@busquedaxPalabra');
 Route::post('/comentario/{ilustracion}','IlustracionesController@comentario');
+Route::post('/like/{ilustracion}','IlustracionesController@like')->name('like.ilustracion');
+Route::post('/reportar/{ilustracion}','IlustracionesController@reporte')->name('reportar.ilustracion');
 
 
 Auth::routes();

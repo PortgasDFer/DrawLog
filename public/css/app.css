@@ -22750,3 +22750,11 @@ object-fit: cover;
   padding: 20px;
   background-color: #F1F1F1;
 }
+
+.escondete{
+  display: none;
+}
+
+.visible{
+  display: block !important;
+}
