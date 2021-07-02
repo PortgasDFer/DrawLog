@@ -49,6 +49,15 @@ class IlustracionesController extends Controller
     public function store(Request $request)
     {
 
+        
+        $request->validate([
+            'descripcion'   => 'required|min:8',
+            'nombre'        => 'required|min:4',
+            'dibujo'        => 'required|image|mimes:image/jpeg, image/png, image/webp, image/gif',
+            'categoria'     => 'required|max:3'
+        ]);
+
+
         $tags= explode(',', $request->tags);
 
         $draw = new Ilustracion();

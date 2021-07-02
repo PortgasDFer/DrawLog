@@ -13,6 +13,15 @@
 </section>
 <section class="section">
 	<div class="container">
+		@if (count($errors) > 0)
+			<div class="notification is-danger">
+			  <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+			</div>
+    @endif
 		<form class="box is-primary" action="/misIlustraciones" method="POST" enctype="multipart/form-data">
 			@csrf
 			<div class="field">	
@@ -53,6 +62,7 @@
 		    <div class="control">
 		      <div class="select">
 				  <select class="input" name="categoria">
+				  		<option value="">Seleccione una categoría...</option>
 				    @foreach($categorias as $cat)
 				    	<option value="{{$cat->id}}">{{$cat->name}}</option>
 				    @endforeach	

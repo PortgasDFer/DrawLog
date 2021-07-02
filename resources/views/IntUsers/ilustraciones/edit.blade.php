@@ -13,6 +13,15 @@
 </section>
 <section class="section">
 	<div class="container">
+		@if (count($errors) > 0)
+			<div class="notification is-danger">
+			  <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+			</div>
+    @endif
 		<div class="columns is-multiline is-mobile has-text-centered">
 			<div class="column is-4-desktop is-6-tablet is-12-mobile">
 				<label class="label">Imagen a editar</label>
