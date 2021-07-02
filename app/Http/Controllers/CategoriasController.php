@@ -55,6 +55,11 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre'        => 'required|min:4',
+            'descripcion'   => 'required|min:9',
+            'color'     => 'required'
+        ]);
         $categoria=new Categoria();
         $categoria->name=$request->input('nombre');
         $categoria->description=$request->input('descripcion');
@@ -97,6 +102,11 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombre'        => 'required|min:4',
+            'descripcion'   => 'required|min:9',
+            'color'     => 'required'
+        ]);
         $categoria=Categoria::where('id','=',$id)->firstOrFail();
         $categoria->name=$request->input('nombre');
         $categoria->description=$request->input('descripcion');

@@ -59,7 +59,7 @@
 					  		@csrf 
 					  		<div class="field">
 						      <p class="control">
-						        <textarea class="textarea" placeholder="Add a comment..." name="reporte"></textarea>
+						        <textarea class="textarea" placeholder="Add a comment..." name="reporte" required=""></textarea>
 						        <input type="hidden" name="id_user" value="{{Auth::user()->id}}">
 						      </p>
 						    </div>
@@ -108,7 +108,7 @@
 				  		@csrf 
 				  		<div class="field">
 					      <p class="control">
-					        <textarea class="textarea" placeholder="Add a comment..." name="comentario"></textarea>
+					        <textarea class="textarea" placeholder="Add a comment..." name="comentario" required=""></textarea>
 					        <input type="hidden" name="id_user" value="{{Auth::user()->id}}">
 					      </p>
 					    </div>

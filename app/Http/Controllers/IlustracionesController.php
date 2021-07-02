@@ -54,7 +54,8 @@ class IlustracionesController extends Controller
             'descripcion'   => 'required|min:8',
             'nombre'        => 'required|min:4',
             'dibujo'        => 'required|image|mimes:image/jpeg, image/png, image/webp, image/gif',
-            'categoria'     => 'required|max:3'
+            'categoria'     => 'required|max:3',
+            'tags'          => 'required'
         ]);
 
 
@@ -206,6 +207,12 @@ class IlustracionesController extends Controller
     public function update(Request $request, $slug)
     {
         $draw=Ilustracion::where('slug','=',$slug)->firstOrFail();
+        $request->validate([
+            'descripcion'   => 'required|min:8',
+            'nombre'        => 'required|min:4',
+            'categoria'     => 'required|max:3',
+            'tags'          => 'required'
+        ]);
         $tags= explode(',', $request->tags);
         $user = User::find(auth()->id());
 
