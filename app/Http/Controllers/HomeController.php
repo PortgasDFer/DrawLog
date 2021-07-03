@@ -34,7 +34,14 @@ class HomeController extends Controller
                             ->inRandomOrder()
                             ->limit(4)
                             ->get();
-            return view('welcome',compact('categorias','draws'));
+
+            $ranking=Ilustracion::select('ilustraciones.art','ilustraciones.name_draw','ilustraciones.slug','users.name','users.slug_user')
+                            ->join('users','users.id','=','ilustraciones.id_user')
+                            ->where('ilustraciones.baja','=',0)
+                            ->orderBy('likes', 'DESC')
+                            ->limit(6)
+                            ->get();
+            return view('welcome',compact('categorias','draws','ranking'));
         }elseif($request->user()->hasRole('admin')){
             return view('dashboard');
         }

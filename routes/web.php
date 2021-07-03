@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+//Controlador de páginas
+Route::get('/','PagesController@index');
+Route::get('/search/','PagesController@busquedaxPalabra');
+Route::get('/terminos-y-condiciones','PagesController@terminos');
+
 Route::get('/top-ilustraciones', function() {
     return view('mejores');
 });

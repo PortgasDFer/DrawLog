@@ -53,7 +53,7 @@ class IlustracionesController extends Controller
         $request->validate([
             'descripcion'   => 'required|min:8',
             'nombre'        => 'required|min:4',
-            'dibujo'        => 'required|image|mimes:image/jpeg, image/png, image/webp, image/gif',
+            'dibujo'        => 'required|image',
             'categoria'     => 'required|max:3',
             'tags'          => 'required'
         ]);

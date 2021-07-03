@@ -24,7 +24,7 @@
   </div>
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/">
+      <a class="navbar-item">
         <i class="fa fa-home" aria-hidden="true"></i>&nbsp; Inicio
       </a>
       <a class="navbar-item">
@@ -83,95 +83,47 @@
     </div>
   </div>
 </section>
-<img src="{{asset('img/mascot-header.png')}}" alt="" style=" width:20%; margin-top: -172px;">
 <div class="container">
-  <section class="section is-medium">
-    <h1 class="title">Al alcance de todos.</h1>
-    <h2 class="subtitle">
-      Comparte tus ilustraciones y comienza a generar ingresos. <strong>Acepta comisiones</strong> o vende los derechos de tus ilustraciones para uso comercial. <br><small>Consulta los terminos y condiciones. ¡Disfruta el contenido y diviértete!</small>
-    </h2>
-    <p>DrawLog es un espacio para artistas que desean comenzar a generar ingresos a través de sus ilustraciones.</p>
-  </section>
-  <section class="section">
-      <div class="columns ">
-        <div class="column has-text-centered">
-            <h1 class="title is-size-1 has-text-link">¿Cómo funciona?</h1>
+  <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li class="is-active"><a href="#" aria-current="page">Busqueda por palabra</a> <i>{{$palabra}}</i></li>
+    </ul>
+  </nav>
+  <h2 class="is-size-4">Destacados:</h2>
+   <div class="columns is-multiline is-mobile has-text-centered">
+      <!-- section1 -->
+      @forelse($draws as $draw)
+        <div class="column is-3-desktop is-6-tablet is-12-mobile">
+          <a href="#">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="/draws/{{$draw->art}}" alt="{{$draw->name_draw}}">
+                </figure>
+              </div>
+            </div>
+          </a>
+            <p class="is-size-4"><a href="#">{{$draw->name_draw}}</a></p>
+            <p class="is-size-6">By: <a href="#">{{$draw->name}}</a></p>
         </div>
-        <div class="column">
-            <ul class="steps has-content-centered">
-              <li class="steps-segment">
-                <span class="steps-marker"></span>
-                <div class="steps-content">
-                  <p class="is-size-4">Paso 1</p>
-                  <p>Registrate en DrawLog <a href="">haciendo click aquí.</a>.</p>
-                </div>
-              </li>
-              <li class="steps-segment">
-                <span class="steps-marker"></span>
-                <div class="steps-content">
-                  <p class="is-size-4">Paso 2</p>
-                  <p>Valida tu identidad y rellena los datos de tu perfil.</p>
-                </div>
-              </li>
-              <li class="steps-segment">
-                <span class="steps-marker"></span>
-                <div class="steps-content">
-                  <p class="is-size-4">Paso 3</p>
-                  <p>Es necesario tener una cuenta en PayPal para recibir pagos.</p>
-                </div>
-              </li>
-              <li class="steps-segment">
-                <span class="steps-marker"></span>
-                <div class="steps-content">
-                  <p class="is-size-4">Paso 4</p>
-                  <p>Sube tus ilustraciones y muestralas al publico</p>
-                </div>
-              </li>
-              <li class="steps-segment  is-active">
-                <span class="steps-marker"></span>
-                <div class="steps-content">
-                  <p class="is-size-4">Paso 5</p>
-                  <p>¡Estas listo para comenzar a monetizar tus ilustraciones!</p>
-                </div>
-              </li>
-            </ul>
+      @empty
+      <section class="section">
+        <div class="container">
+          <h1 class="title">Ooops!</h1>
+          <h2 class="subtitle">
+            No se encontraron resultados, <a href="/login">¡Carga una ilustración!</a>
+          </h2>
         </div>
-    </div>
-  </section>
-  <h1 class="title">Ilustraciones aleatorias</h1>
-  <div class="columns">
-    <div class="column">
-      <figure class="image is-3by2">
-        <img src="https://images.hdqwalls.com/wallpapers/fanart-of-asuka-r5.jpg">
-      </figure>
-      Autor: Phantom123
-    </div>
-    <div class="column">
-      <figure class="image is-3by2">
-        <img src="https://i.pinimg.com/originals/47/98/ac/4798ac6362e2663cb1bee88e63e7a719.jpg">
-      </figure>
-      Autor: Selina Kyle
-    </div>
-    <div class="column">
-      <figure class="image is-3by2">
-        <img src="https://comicvine1.cbsistatic.com/uploads/original/11127/111275590/5081852-0643928345-shatt.png">
-      </figure>
-      Autor: Tommy Shelby
-    </div>
-    <div class="column">
-      <figure class="image is-3by2">
-        <img src="https://www.wallpaperflare.com/static/293/122/421/tengen-toppa-gurren-lagann-simon-tengen-toppa-wallpaper.jpg">
-      </figure>
-      Autor: Van Persie
-    </div>
-  </div>
+      </section>
+      @endforelse
 </div>
-
+</div>
 <footer class="footer  is-primary" style="background-color: #282828; margin-top: 19px; color: white;">
   <div class="content has-text-centered">
     <div class="columns">
       <div class="column">
-        <a href="/terminos-y-condiciones" class="is-link"><i class="fa fa-thumb-tack" aria-hidden="true"></i> &nbsp;Terminos y condiciones</a> || <a href="#" class="is-link"> <i class="fa fa-thumb-tack" aria-hidden="true"></i> &nbsp;Politica de uso</a> <br>
+        <a href="#" class="is-link"><i class="fa fa-thumb-tack" aria-hidden="true"></i> &nbsp;Terminos y condiciones</a> || <a href="#" class="is-link"> <i class="fa fa-thumb-tack" aria-hidden="true"></i> &nbsp;Politica de uso</a> <br>
         <a href="https://github.com/PortgasDFer"><i class="fa fa-github" aria-hidden="true"></i> Otros proyectos</a>
       </div>
       <div class="is-divider-vertical" data-content="UTN"></div>

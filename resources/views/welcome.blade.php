@@ -40,97 +40,24 @@
           </div>
         @endforeach
         <!-- section2 -->
-        <div class="column is-3-tablet is-6-mobile">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMJRQBG-108Reo5TZmDK8A9rNoiw3IRfUIOkbU2yF7NpsyRxXl"/>
-            <p class="is-size-4">One</p>
-            <p class="is-size-6">$20</p>
-        </div>
-        <div class="column is-3-tablet is-6-mobile">
-            <img src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/>
-            <p class="is-size-4">Two</p>
-            <p class="is-size-6">$20</p>
-        </div>
-        <div class="column is-3-tablet is-6-mobile">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMJRQBG-108Reo5TZmDK8A9rNoiw3IRfUIOkbU2yF7NpsyRxXl"/>
-            <p class="is-size-4">Three</p>
-            <p class="is-size-6">$20</p>
-        </div>
-        <div class="column is-3-tablet is-6-mobile">
-            <img src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/>
-            <p class="is-size-4">Four</p>
-            <p class="is-size-6">$20</p>
-        </div>
     </div>
 </section>
 <section class="section">
     <h3 class="is-size-3 ">Ranking diario <i class="fa fa-star" aria-hidden="true"></i></h3>
     <div class="columns is-multiline is-mobile has-text-centered">
+        @foreach($ranking as $rank)
         <div class="column is-2-desktop is-4-tablet is-12-mobile">
             <div class="card">
               <div class="card-image">
                 <figure class="image is-1 by 1">
-                  <img src="img/exampleimg1.jpg" alt="Placeholder image">
+                  <img src="draws/{{$rank->art}}" alt="Placeholder image">
                 </figure>
               </div>
             </div>
-            <p class="is-size-4">One</p>
-            <p class="is-size-6">$20</p>
+            <p class="is-size-4"><a href="/draw/{{$rank->slug}}/view">{{$rank->name_draw}}</a></p>
+            <p class="is-size-6">By: <a href="/user/{{$rank->slug_user}}/profile">{{$rank->name}}</a></p>
         </div>
-        <div class="column is-2-desktop is-4-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-1 by 1">
-                  <img src="img/exampleimg1.jpg" alt="Placeholder image">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">One</p>
-            <p class="is-size-6">$20</p>
-        </div>
-        <div class="column is-2-desktop is-4-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-1 by 1">
-                  <img src="img/exampleimg1.jpg" alt="Placeholder image">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">One</p>
-            <p class="is-size-6">$20</p>
-        </div>
-        <div class="column is-2-desktop is-4-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-1 by 1">
-                  <img src="img/exampleimg1.jpg" alt="Placeholder image">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">One</p>
-            <p class="is-size-6">$20</p>
-        </div>
-        <div class="column is-2-desktop is-4-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-1 by 1">
-                  <img src="img/exampleimg1.jpg" alt="Placeholder image">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">One</p>
-            <p class="is-size-6">$20</p>
-        </div>
-        <div class="column is-2-desktop is-4-tablet is-12-mobile">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-1 by 1">
-                  <img src="img/exampleimg1.jpg" alt="Placeholder image">
-                </figure>
-              </div>
-            </div>
-            <p class="is-size-4">One</p>
-            <p class="is-size-6">$20</p>
-        </div>
+        @endforeach
     </div>
     <div class="columns is-multiline is-mobile has-text-centered">
     </div>
