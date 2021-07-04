@@ -4,7 +4,7 @@
 - Codificación Backend del proyecto con Laravel 7
 - Despliegue del proyecto
 
-# LinLife
+# UTN
 ![](https://raw.githubusercontent.com/PortgasDFer/DrawLog/main/public/img/drawlog-logo.png)
 
 Proyecto Realizado para la materia de  desarrollo de aplicaciones web
