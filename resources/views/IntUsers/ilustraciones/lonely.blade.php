@@ -13,9 +13,9 @@
 				@endif
 				<div class="card">
 				  <div class="card-image">
-				    <figure class="image is-4by3">
+				    
 				      <img src="/draws/{{$draw->art}}" alt="Placeholder image">
-				    </figure>
+				    
 				  </div>
 				  <div class="card-content">
 				    <div class="media">
@@ -44,7 +44,10 @@
 						<button class="button is-info is-outlined"  id="Btn-report" onclick="mostrar()"> <i class="fa fa-flag-checkered" aria-hidden="true"></i>Report</button>	
 					</div>	
 					<div class="buttons is-pulled-right">
-						<button class="button is-link is-outlined"> <i class="fa fa-user-plus" aria-hidden="true"></i>Follow</button>
+						<form action="/follow/{{$draw->slug}}" method="POST">
+							@csrf
+							<button class="button is-link is-outlined" type="submit"> <i class="fa fa-user-plus" aria-hidden="true"></i>Follow</button>
+						</form>
 						<form action="/like/{{$draw->slug}}" method="POST">
 							@csrf
 							<button class="button is-danger is-outlined" type="submit"> <i class="fa fa-heart-o" aria-hidden="true"></i>Like</button>

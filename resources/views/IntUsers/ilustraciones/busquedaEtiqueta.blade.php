@@ -16,9 +16,7 @@
           <a href="/draw/{{$draw->slug}}/view">
             <div class="card">
               <div class="card-image">
-                <figure class="image is-4by3">
                   <img src="/draws/{{$draw->art}}" alt="{{$draw->name_draw}}">
-                </figure>
               </div>
             </div>
           </a>
@@ -40,11 +38,13 @@
 <section class="section">
 	<h3 class="is-size-4">Otros resultados</h3>
 	<div class="columns is-multiline is-mobile has-text-centered">
-		<div class="column is-3-tablet is-6-mobile">
-        <img src="https://static.boredpanda.com/blog/wp-content/uploads/2020/05/Artists-from-around-the-world-challenged-themselves-to-draw-the-heroine-Sailor-Moon-in-their-own-style-5ec4d5a2cd7fb__700.jpg"/>
-        <p class="is-size-4">Challege S moon</p>
-        <p class="is-size-6">By: Ora_Rita12</p>
+		 @foreach($anothers as $d)
+    <div class="column is-3-tablet is-6-mobile">
+        <img src="/draws/{{$d->art}}" alt="{{$d->name_draw}}">
+        <p class="is-size-4"><a href="/draw/{{$d->slug}}/view">{{$d->name_draw}}</a></p>
+            <p class="is-size-6">By: <a href="/user/{{$d->slug_user}}/profile">{{$d->name}}</a></p>
     </div>
+    @endforeach
 	</div>
 </section>
 @endsection

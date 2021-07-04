@@ -58,6 +58,8 @@ Route::get('/tag/{tag}/view','IlustracionesController@busquedaxEtiqueta');
 Route::get('/busqueda/','IlustracionesController@busquedaxPalabra');
 Route::post('/comentario/{ilustracion}','IlustracionesController@comentario');
 Route::post('/like/{ilustracion}','IlustracionesController@like')->name('like.ilustracion');
+Route::post('/follow/{ilustracion}','IlustracionesController@follow')->name('follow.draw');
+Route::post('/follow-profile/{profile}','IlustracionesController@followProfile')->name('follow.profile');
 Route::post('/reportar/{ilustracion}','IlustracionesController@reporte')->name('reportar.ilustracion');
 
 

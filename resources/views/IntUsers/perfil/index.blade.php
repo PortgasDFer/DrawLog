@@ -172,7 +172,11 @@
             <br>
           </p>
           <p class='tagline'>
-            The users profile bio would go here, of course. It could be two lines or more or whatever. We should probably limit the amount of characters to ~500 at most though.
+            {{$profile->nombre}} {{$profile->apellidos}} <br> 
+            {{$profile->pais}} <br> 
+            <a href="{{$profile->fb}}"><i class="fa fa-facebook-square" aria-hidden="true"></i></a> 
+            <a href="{{$profile->tw}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="{{$profile->ig}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>
           </p>
         </div>
        <div class='column is-2-tablet is-4-mobile has-text-centered'>

@@ -151,8 +151,14 @@ class IlustracionesController extends Controller
         ->join('users','users.id','=','ilustraciones.id_user')
         ->where('ilustraciones.id_categoria','=',$categoria->id)
         ->where('ilustraciones.baja','=',0)
-        ->get();
-        return view('IntUsers.ilustraciones.busquedaCat',compact('categoria','draws'));
+        ->paginate(12);
+        $anothers = Ilustracion::select('ilustraciones.art','ilustraciones.name_draw','ilustraciones.slug','users.name','users.slug_user')
+                            ->join('users','users.id','=','ilustraciones.id_user')
+                            ->where('ilustraciones.baja','=',0)
+                            ->inRandomOrder()
+                            ->limit(4)
+                            ->get();
+        return view('IntUsers.ilustraciones.busquedaCat',compact('categoria','draws','anothers'));
     }
 
     public function busquedaxEtiqueta($slug)
@@ -164,9 +170,15 @@ class IlustracionesController extends Controller
                             ->join('users','users.id','=','ilustraciones.id_user')
                             ->withAnyTag($slug)
                             ->where('ilustraciones.baja','=',0)
-                            ->get();
+                            ->paginate(12);
 
-        return view('IntUsers.ilustraciones.busquedaEtiqueta', compact('tag','draws'));
+        $anothers = Ilustracion::select('ilustraciones.art','ilustraciones.name_draw','ilustraciones.slug','users.name','users.slug_user')
+                            ->join('users','users.id','=','ilustraciones.id_user')
+                            ->where('ilustraciones.baja','=',0)
+                            ->inRandomOrder()
+                            ->limit(4)
+                            ->get();
+        return view('IntUsers.ilustraciones.busquedaEtiqueta', compact('tag','draws','anothers'));
     }
 
     public function busquedaxPalabra(Request $request)
@@ -177,9 +189,15 @@ class IlustracionesController extends Controller
                             ->join('users','users.id','=','ilustraciones.id_user')
                             ->where('ilustraciones.baja','=',0)
                             ->search($palabra)
-                            ->get();
+                            ->paginate(12);
                             
-        return view('IntUsers.ilustraciones.busqueda',compact('palabra','draws'));
+        $anothers = Ilustracion::select('ilustraciones.art','ilustraciones.name_draw','ilustraciones.slug','users.name','users.slug_user')
+                            ->join('users','users.id','=','ilustraciones.id_user')
+                            ->where('ilustraciones.baja','=',0)
+                            ->inRandomOrder()
+                            ->limit(4)
+                            ->get();
+        return view('IntUsers.ilustraciones.busqueda',compact('palabra','draws','anothers'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -273,7 +291,34 @@ class IlustracionesController extends Controller
         return view('IntUsers.ilustraciones.lonely', compact('draw','autor','profile','visitante','comentarios'));
     }
 
+    public function follow($slug)
+    {
+        $draw=Ilustracion::where('slug','=',$slug)->firstOrFail();
+        $user = User::find(auth()->id());
+        $autor=User::where('id','=',$draw->id_user)->firstOrFail();
+        $profile=Profile::where('id_user','=',$autor->id)->firstOrFail();
+        $profile->seguidores+=1;
+        $profile->save();
+        $visitante=Profile::where('id_user','=',$user->id)->firstOrFail();
+        $comentarios=Comentario::select('comentarios.comentario','comentarios.id_comentario','users.name','users.slug_user','ilustraciones.slug','profiles.avatar')
+                        ->join('users','comentarios.id_user','=','users.id')
+                        ->join('ilustraciones','comentarios.id_ilustracion','=','ilustraciones.id_ilustracion')
+                        ->join('profiles','profiles.id_user','=','users.id')
+                        ->where('comentarios.id_ilustracion','=',$draw->id_ilustracion)
+                        ->get();
+        alert()->success('DrawLog', 'Ahora sigues a este usuario ♥');
+        return view('IntUsers.ilustraciones.lonely', compact('draw','autor','profile','visitante','comentarios'));
+    }
 
+    public function followProfile($slug)
+    {
+        $autor=User::where('slug_user','=',$slug)->firstOrFail();
+        $profile=Profile::where('id_user','=',$autor->id)->firstOrFail();
+        $profile->seguidores+=1;
+        $profile->save();
+        alert()->success('DrawLog', 'Ahora sigues a este usuario ♥');
+        return Redirect::to('/home');
+    }
     public function reporte(Request $request, $slug)
     {
         $draw=Ilustracion::where('slug','=',$slug)->firstOrFail();

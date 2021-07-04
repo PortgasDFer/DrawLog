@@ -29,9 +29,9 @@
               <div class="card">
                 <div class="card-image">
                   <a href="/draw/{{$draw->slug}}/view">
-                    <figure class="image is-4by3">
+                 
                       <img src="draws/{{$draw->art}}" alt="Placeholder image">
-                    </figure>
+         
                   </a>
                 </div>
               </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categoria;
 use App\Ilustracion;
+use App\Reporte;
 
 class HomeController extends Controller
 {
@@ -43,7 +44,15 @@ class HomeController extends Controller
                             ->get();
             return view('welcome',compact('categorias','draws','ranking'));
         }elseif($request->user()->hasRole('admin')){
-            return view('dashboard');
+            $draws=Ilustracion::select('ilustraciones.art','ilustraciones.name_draw','ilustraciones.slug','users.name','users.slug_user')
+                            ->join('users','users.id','=','ilustraciones.id_user')
+                            ->where('ilustraciones.baja','=',0)
+                            ->inRandomOrder()
+                            ->limit(4)
+                            ->get();
+            $noDraws=Ilustracion::where('baja','=',0)->count();
+            $noReportes=Reporte::count();
+            return view('dashboard', compact('noDraws','noReportes','draws'));
         }
     }
 }

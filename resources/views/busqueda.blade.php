@@ -98,9 +98,7 @@
           <a href="#">
             <div class="card">
               <div class="card-image">
-                <figure class="image is-4by3">
                   <img src="/draws/{{$draw->art}}" alt="{{$draw->name_draw}}">
-                </figure>
               </div>
             </div>
           </a>

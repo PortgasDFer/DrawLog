@@ -11,14 +11,11 @@
   </div>
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
-        <i class="fa fa-home" aria-hidden="true" href="/home"></i>&nbsp; Inicio
+      <a class="navbar-item" href="/home">
+        <i class="fa fa-home" aria-hidden="true"></i>&nbsp; Inicio
       </a>
       <a class="navbar-item" href="/categorias-admin">
         <i class="fa fa-list" aria-hidden="true"></i>&nbsp; Categorías
-      </a>
-      <a class="navbar-item">
-        <i class="fa fa-money" aria-hidden="true"></i>&nbsp; Ventas
       </a>
       <a class="navbar-item" href="/reportes-admin">
          <i class="fa fa-bug" aria-hidden="true"></i>&nbsp; Reportes
